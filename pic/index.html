@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>어버이날</title>
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #fffbe7 0%, #ffe3e3 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            overflow-x: hidden;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+        }
+        .message-section {
+            text-align: center;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 2s ease-out forwards;
+        }
+        .main-message {
+            font-family: 'Nanum Pen Script', 'Noto Sans KR', cursive, sans-serif;
+            font-size: 3.2rem;
+            color: #e07a5f;
+            margin-bottom: 1.2rem;
+            font-weight: bold;
+            text-shadow: 0 2px 8px #fff3;
+            letter-spacing: 2px;
+        }
+        .sub-message {
+            color: #3d405b;
+            font-size: 1.3rem;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .content-section {
+            background: linear-gradient(135deg, #fff7fa 60%, #e3e6ff 100%);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(180, 120, 200, 0.10);
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        .photo-section {
+            text-align: center;
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+        }
+        .photo-container {
+            display: flex;
+            transition: transform 1s cubic-bezier(.77,0,.18,1);
+            height: 100%;
+        }
+        .photo {
+            width: 220px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 18px;
+            border: 4px solid #ffe3e3;
+            box-shadow: 0 8px 24px rgba(255, 182, 193, 0.18);
+            background: #fff0f6;
+        }
+        .letter {
+            font-family: 'Nanum Pen Script', 'Noto Sans KR', cursive, sans-serif;
+            font-size: 1.4rem;
+            line-height: 2.1;
+            color: #e07a5f;
+            background: #fff0f6;
+            border-radius: 16px;
+            padding: 1.5rem 1.2rem;
+            box-shadow: 0 2px 12px rgba(255,182,193,0.08);
+            position: relative;
+        }
+        .letter:before {
+            content: '🌸';
+            font-size: 2rem;
+            position: absolute;
+            left: 1rem;
+            top: 1rem;
+        }
+        .letter:after {
+            content: '🌷';
+            font-size: 2rem;
+            position: absolute;
+            right: 1rem;
+            bottom: 1rem;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        .show { animation: slideUp 1s ease-out forwards; }
+        @media (max-width: 600px) {
+            .main-message { font-size: 2rem; }
+            .content-section { padding: 1.5rem; }
+            .photo-section { height: 240px; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <section class="message-section">
+            <h1 class="main-message">🌸 엄마, 아빠 감사합니다 🌸</h1>
+        </section>
+
+        <section class="content-section photo-section">
+            <div class="photo-container" style="display: flex; gap: 1.5rem; justify-content: center;">
+                <img src="https://raw.githubusercontent.com/lukakas0213/Mothersday/main/pic/mothers1.jpg" alt="가족사진1" class="photo">
+                <img src="https://raw.githubusercontent.com/lukakas0213/Mothersday/main/pic/mothers2.jpg" alt="가족사진2" class="photo">
+                <img src="https://raw.githubusercontent.com/lukakas0213/Mothersday/main/pic/mothers3.jpg" alt="가족사진3" class="photo">
+            </div>
+        </section>
+
+        <section class="content-section" id="letter-section">
+            <div class="letter">
+                <br>
+                사랑하는 엄마 아빠,
+                항상 저희를 위해 고생하시고 서포트 해주셔서 감사합니다.
+                비록 미국에 멀리 있지만 무한한 사랑을 느끼고, 또 무한한
+                응원을 받고 있어서 너무 행복합니다. 제가 공부에 집중하고 
+                잘해나아갈 수 있는것은 항상 바른길로 인도하려하는 어머니 아버지의 
+                손길 덕분입니다. 항상 건강하세요. 저희를 챙기는것도 좋지만 엄마 아빠의 
+                건강과 행복이 1순위가 되었으면 좋겠습니다. 제가 비록 지금은 
+                아무것도 할 수 있는것이 없지만 한국에가서 뭐든 해서 맛있는 음식과 
+                좋은것 들을 대접해드리고 싶습니다. 항상 하나님안에서 행복한 가정이 있다는
+                것이 너무나도 감사하고 든든합니다. 
+                사랑합니다.
+             </div>
+        </section>
+    </div>
+</body>
+</html> 
