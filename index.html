@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: 'Noto Sans KR', sans-serif;
-            background: linear-gradient(135deg, #fffbe7 0%, #ffe3e3 100%);
+            background: linear-gradient(120deg, #fffbe7 0%, #ffe3e3 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -16,7 +16,7 @@
             overflow-x: hidden;
         }
         .container {
-            max-width: 800px;
+            max-width: 900px;
             width: 100%;
             margin: 0 auto;
         }
@@ -33,67 +33,96 @@
             color: #e07a5f;
             margin-bottom: 1.2rem;
             font-weight: bold;
-            text-shadow: 0 2px 8px #fff3;
+            text-shadow: 0 2px 12px #ffe3e3, 0 1px 0 #fff;
             letter-spacing: 2px;
         }
         .sub-message {
-            color: #3d405b;
+            color: #b5838d;
             font-size: 1.3rem;
             font-family: 'Noto Sans KR', sans-serif;
         }
         .content-section {
-            background: linear-gradient(135deg, #fff7fa 60%, #e3e6ff 100%);
-            border-radius: 24px;
-            padding: 2.5rem;
-            box-shadow: 0 10px 40px rgba(180, 120, 200, 0.10);
+            background: linear-gradient(135deg, #fff7fa 60%, #ffe3e3 100%);
+            border-radius: 28px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 10px 40px rgba(255, 182, 193, 0.18), 0 2px 8px #fffbe7;
             margin-bottom: 2.5rem;
-            opacity: 0;
-            transform: translateY(50px);
         }
         .photo-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             text-align: center;
             position: relative;
-            height: 400px;
+            height: 500px;
             overflow: hidden;
+            background: rgba(255,255,255,0.7);
+            border-radius: 24px;
+            box-shadow: 0 4px 24px #ffe3e3;
+            perspective: 1000px;
         }
         .photo-container {
             display: flex;
-            transition: transform 1s cubic-bezier(.77,0,.18,1);
+            justify-content: center;
+            align-items: center;
+            width: 100%;
             height: 100%;
+            position: relative;
         }
         .photo {
-            width: 220px;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 18px;
-            border: 4px solid #ffe3e3;
-            box-shadow: 0 8px 24px rgba(255, 182, 193, 0.18);
-            background: #fff0f6;
+            position: absolute;
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: contain;
+            object-position: center center;
+            background: #fff8f0;
+            border-radius: 22px;
+            border: 5px solid #ffd6e0;
+            box-shadow: 0 8px 32px rgba(255, 182, 193, 0.22), 0 2px 8px #fffbe7;
+            padding: 0.5rem;
+            opacity: 0;
+            transition: all 0.7s cubic-bezier(.77,0,.18,1);
+        }
+        .photo.active {
+            opacity: 1;
+            z-index: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .photo.next {
+            opacity: 0.5;
+            z-index: 0;
+            transform: translate(-50%, -50%) scale(0.9);
         }
         .letter {
             font-family: 'Nanum Pen Script', 'Noto Sans KR', cursive, sans-serif;
-            font-size: 1.4rem;
-            line-height: 2.1;
+            font-size: 1.5rem;
+            line-height: 2.2;
             color: #e07a5f;
             background: #fff0f6;
-            border-radius: 16px;
-            padding: 1.5rem 1.2rem;
-            box-shadow: 0 2px 12px rgba(255,182,193,0.08);
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            box-shadow: 0 2px 16px rgba(255,182,193,0.13);
             position: relative;
+            border: 2px dashed #ffd6e0;
         }
         .letter:before {
             content: '🌸';
-            font-size: 2rem;
+            font-size: 2.2rem;
             position: absolute;
-            left: 1rem;
-            top: 1rem;
+            left: 1.2rem;
+            top: 1.2rem;
         }
         .letter:after {
             content: '🌷';
-            font-size: 2rem;
+            font-size: 2.2rem;
             position: absolute;
-            right: 1rem;
-            bottom: 1rem;
+            right: 1.2rem;
+            bottom: 1.2rem;
         }
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px);}
@@ -104,10 +133,23 @@
             to { opacity: 1; transform: translateY(0);}
         }
         .show { animation: slideUp 1s ease-out forwards; }
+        @media (max-width: 900px) {
+            .photo {
+                max-width: 400px;
+                max-height: 380px;
+            }
+            .photo-section {
+                height: 400px;
+            }
+        }
         @media (max-width: 600px) {
             .main-message { font-size: 2rem; }
             .content-section { padding: 1.5rem; }
-            .photo-section { height: 240px; }
+            .photo-section { height: 300px; }
+            .photo {
+                max-width: 280px;
+                max-height: 280px;
+            }
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&family=Nanum+Pen+Script&display=swap" rel="stylesheet">
@@ -119,8 +161,8 @@
         </section>
 
         <section class="content-section photo-section">
-            <div class="photo-container" style="display: flex; gap: 1.5rem; justify-content: center;">
-                <img src="pic/mother.jpg" alt="가족사진1" class="photo">
+            <div class="photo-container">
+                <img src="pic/mothers1.jpg" alt="가족사진1" class="photo">
                 <img src="pic/mothers2.jpg" alt="가족사진2" class="photo">
                 <img src="pic/mothers3.jpg" alt="가족사진3" class="photo">
             </div>
@@ -130,18 +172,52 @@
             <div class="letter">
                 <br>
                 사랑하는 엄마 아빠,
-                항상 저희를 위해 고생하시고 서포트 해주셔서 감사합니다.
-                비록 미국에 멀리 있지만 무한한 사랑을 느끼고, 또 무한한
-                응원을 받고 있어서 너무 행복합니다. 제가 공부에 집중하고 
-                잘해나아갈 수 있는것은 항상 바른길로 인도하려하는 어머니 아버지의 
-                손길 덕분입니다. 항상 건강하세요. 저희를 챙기는것도 좋지만 엄마 아빠의 
-                건강과 행복이 1순위가 되었으면 좋겠습니다. 제가 비록 지금은 
-                아무것도 할 수 있는것이 없지만 한국에가서 뭐든 해서 맛있는 음식과 
-                좋은것 들을 대접해드리고 싶습니다. 항상 하나님안에서 행복한 가정이 있다는
-                것이 너무나도 감사하고 든든합니다. 
+                항상 저희를 위해 고생하시고 서포트 해주셔서 감사합니다.  
+                비록 미국에 멀리 있지만, 엄마 아빠의 무한한 사랑을 느끼고,  
+                또 무한한 응원을 받고 있어서 저는 정말 행복합니다.
+                
+                제가 공부에 집중하고 잘해나아갈 수 있는 것은  
+                항상 바른 길로 인도해주시는 어머니, 아버지의 손길 덕분입니다.  
+                그 손길 하나하나가 지금의 저를 만들어주고,  
+                제가 앞으로 나아갈 수 있는 큰 힘이 되어주고 있어요.
+                
+                저희를 챙기시는 것도 감사하지만,  
+                엄마 아빠의 건강과 행복이 1순위가 되었으면 좋겠습니다.  
+                제가 비록 지금은 아무것도 해드릴 수 있는 게 없지만,  
+                한국에 돌아가면 뭐든 해서, 맛있는 음식과 좋은 것들 많이 대접해드리고 싶어요.
+                
+                항상 하나님 안에서 행복한 가정이 있다는 것이  
+                얼마나 큰 축복인지, 얼마나 든든하고 감사한 일인지 매일 느끼고 있습니다.
+                
+                멀리서 늘 기도하고 있어요.  
                 사랑합니다.
-             </div>
+                             </div>
         </section>
     </div>
+
+    <script>
+        const photoContainer = document.querySelector('.photo-container');
+        const photos = document.querySelectorAll('.photo');
+        let current = 0;
+        
+        function updatePhotos() {
+            photos.forEach((photo, index) => {
+                photo.classList.remove('active', 'next');
+                if (index === current) {
+                    photo.classList.add('active');
+                } else if (index === (current + 1) % photos.length) {
+                    photo.classList.add('next');
+                }
+            });
+        }
+        
+        // 초기 상태 설정
+        updatePhotos();
+        
+        setInterval(() => {
+            current = (current + 1) % photos.length;
+            updatePhotos();
+        }, 3000);
+    </script>
 </body>
 </html> 
