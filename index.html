@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>어버이날 특별한 마음</title>
+    <title>어버이날</title>
     <style>
         body {
             font-family: 'Noto Sans KR', sans-serif;
@@ -62,8 +62,8 @@
             height: 100%;
         }
         .photo {
-            min-width: 100%;
-            height: 100%;
+            width: 220px;
+            height: 300px;
             object-fit: cover;
             border-radius: 18px;
             border: 4px solid #ffe3e3;
@@ -119,10 +119,10 @@
         </section>
 
         <section class="content-section photo-section">
-            <div class="photo-container">
-                <img src="mothers1.jpg" alt="가족사진1" class="photo">
-                <img src="mothers2.jpg" alt="가족사진2" class="photo">
-                <img src="mothers3.jpg" alt="가족사진3" class="photo">
+            <div class="photo-container" style="display: flex; gap: 1.5rem; justify-content: center;">
+                <img src="pic/mother.jpg" alt="가족사진1" class="photo">
+                <img src="pic/mothers2.jpg" alt="가족사진2" class="photo">
+                <img src="pic/mothers3.jpg" alt="가족사진3" class="photo">
             </div>
         </section>
 
@@ -143,26 +143,5 @@
              </div>
         </section>
     </div>
-
-    <script>
-        let currentPhoto = 0;
-        const photos = document.querySelectorAll('.photo');
-        const photoContainer = document.querySelector('.photo-container');
-        const letterSection = document.getElementById('letter-section');
-
-        // 사진 슬라이드쇼
-        function slidePhotos() {
-            currentPhoto = (currentPhoto + 1) % photos.length;
-            photoContainer.style.transform = `translateX(-${currentPhoto * 100}%)`;
-        }
-
-        // 3초마다 사진 변경
-        setInterval(slidePhotos, 3000);
-
-        // 편지 섹션 표시
-        setTimeout(() => {
-            letterSection.classList.add('show');
-        }, 10000); // 10초 후 편지 표시
-    </script>
 </body>
 </html> 
